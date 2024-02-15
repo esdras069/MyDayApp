@@ -6,10 +6,20 @@
     {{welcome}}
   </h2>
 
+  h<h4>uso de ng FOR y FOR new sintaxis</h4>
   <ul>
     <li *ngFor="let task of tasks">
       {{task}}
     </li>
+  </ul>
+
+  new:
+  <ul>
+    @for(task of tasks; track task; let i = $index) {
+      <li index="track">{{ i }} - {{ task}}</li>
+    } @empty {
+      <li><strong> la lista viene vacia</strong></li>
+    }
   </ul>
 
   <h2>{{ 'hola '.repeat(4) }}</h2>
@@ -65,13 +75,19 @@
   </ul>
 <!-- condicional ngIf -->
   <hr>
-  condicionales usando ngIf
+  <h3> usando ngIf </h3>
   <br>
   <div *ngIf="1 !== 1">
     my content
   </div>
   <div *ngIf="signalName() == 'esdras'">
     {{welcome}}
+  </div>
+  <div>
+    <h4>-Nueva Sintaxis de Angular: </h4>
+    @if (signalName() == 'esdras') {
+     <p> soy eajanel <p>
+    }
   </div>
   <div>
     <input type="number" [value]="signalPersonObj().age" (change)="updateAge($event)">
@@ -83,8 +99,15 @@
     hola esto es en caso de no se mayora 18
   </ng-template>
 
+  <h4>nueva sintaxis if-else:</h4>
+  @if (signalPersonObj().name === 'josue' && signalPersonObj().age > 18) {
+    <p> Hola Soy {{ signalPersonObj().name }} y soy mayor de {{ signalPersonObj().age}}</p>
+  } @else {
+    <p> hola esto es en caso de no se mayora 18</p>
+  }
+
   <hr>
-  USO DE SWITCH CASE:
+  <h3>USO DE SWITCH CASE:</h3>
   <tr>
   <input type="text" [value]="signalPersonObj().name" (change)="handlerEventName($event)">
   <tr>
@@ -106,9 +129,24 @@
 
   </div>
 
+  <div>
+    <h4>SWITCH new sintaxis</h4>
+    @switch(signalPersonObj().name) {
+      @case('Esdras'){
+      <p>yo soy Esdras</p>
+      }
+      @case('Josue'){
+      <p>yo soy Josue</p>
+      }
+      @default {
+        <p>yo no soy nadie</p>
+      }
+    }
+  </div>
+
   <hr>
   <div>
-    FORMULARIOS REACTIVOS:
+    <h3>FORMULARIOS REACTIVOS:</h3>
 
     <tr>
     <input type="color" [formControl]="colorCtrl">
@@ -116,7 +154,7 @@
   </div>
 
   <hr>
-  APLICANDO ESTILOS
+  <h3>APLICANDO ESTILOS</h3>
   <br>
   <p>para aplicar estilos a un svg hacerlo por medio de properti binding usando attr</p>
   <svg>
