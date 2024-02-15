@@ -11,4 +11,6 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'todoApp';
+  welcome = 'Welcome to the Todo App';
+  tasks = ['Task 1', 'Task 2', 'Task 3', 'Task 4', 'Task 5'];
 }

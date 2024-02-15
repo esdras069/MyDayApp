@@ -1,0 +1,148 @@
+<div class="container">
+  <p>labs works!</p>
+  <h1>HOLA MUNDO DESDE ANGULAR</h1>
+
+  <h2>
+    {{welcome}}
+  </h2>
+
+  <ul>
+    <li *ngFor="let task of tasks">
+      {{task}}
+    </li>
+  </ul>
+
+  <h2>{{ 'hola '.repeat(4) }}</h2>
+
+  <p> la suma de 3 + 3 es {{ 3 + 3 }}</p>
+
+  <p> Hola soy  {{ name }}</p>
+  <p> Mi edad es  {{ age }}</p>
+
+  <hr>
+
+  <img src="" alt="text alternativo al pasar el mouse">
+
+  <input type="text" value="AJANEL">
+  <input type="text" [value]="name">
+
+  <button (click)="onClickMe()">Click me!</button>
+
+  <!-- esto en el vue para escuchar sus funciones es con @ aqui es con parentesis ()-->
+  <button (dblclick)="onClickMe()">DoubleClick me!</button>
+
+  <input type="number" [value]="person.age" (change)="handlerEvent($event)">
+  <br>
+
+  <button (click)="onClickMe2($event)" id="buronNumero1">Click me and pass the event!</button>
+
+  <img [src]="imageSrc">
+
+  <br>
+  keydown
+  <input type="text" (keydown)="keyEvent($event)">
+
+  <p> keydown solo cuando necesite un atajo de teclado "SHIFT + T"</p>
+    <input type="text" (keydown.shift.f)="alertHelloWorld()">
+<p>
+  SINGNALS
+  <br>
+  Ingresa un texto para ver reactividad
+  <input type="text" (keydown)="reactivityUsingSignal($event)">
+  <br>
+  aqui veras la variable reactiva con signal {{ signalVariable() }}
+  <br>
+  ver el valor de la variable reactiva en ujn input
+  <input type="text" disabled [value]="signalVariable()">
+</p>
+
+  <hr>
+  directivas con signal
+  <ul>
+    <li *ngFor="let task of tasksSignal(); index as indice">
+     {{indice }} - {{task}}
+    </li>
+  </ul>
+<!-- condicional ngIf -->
+  <hr>
+  condicionales usando ngIf
+  <br>
+  <div *ngIf="1 !== 1">
+    my content
+  </div>
+  <div *ngIf="signalName() == 'esdras'">
+    {{welcome}}
+  </div>
+  <div>
+    <input type="number" [value]="signalPersonObj().age" (change)="updateAge($event)">
+  </div>
+  <div *ngIf="signalPersonObj().name === 'josue' && signalPersonObj().age > 18; else bloqueElsePersonalizado">
+    Hola Soy {{ signalPersonObj().name }} y soy mayor de {{ signalPersonObj().age}}
+  </div>
+  <ng-template #bloqueElsePersonalizado>
+    hola esto es en caso de no se mayora 18
+  </ng-template>
+
+  <hr>
+  USO DE SWITCH CASE:
+  <tr>
+  <input type="text" [value]="signalPersonObj().name" (change)="handlerEventName($event)">
+  <tr>
+  {{ signalPersonObj().name}} -> este es el valor validado
+
+  <div [ngSwitch]="signalPersonObj().name">
+    <p *ngSwitchCase="'Esdras'">
+      Hola entro en el primer caso
+    </p>
+    <p *ngSwitchCase="'Ajanel'">
+      Hola entro en el segundo caso
+    </p>
+    <p *ngSwitchCase="'Josue'">
+      Hola entro en el tercer caso
+    </p>
+    <p *ngSwitchDefault>
+      No encontro a ningun caso
+    </p>
+
+  </div>
+
+  <hr>
+  <div>
+    FORMULARIOS REACTIVOS:
+
+    <tr>
+    <input type="color" [formControl]="colorCtrl">
+    value: {{ colorCtrl.value }}
+  </div>
+
+  <hr>
+  APLICANDO ESTILOS
+  <br>
+  <p>para aplicar estilos a un svg hacerlo por medio de properti binding usando attr</p>
+  <svg>
+    <g>
+      <rect x="0" y="0" height="100" width="100" [attr.fill]="colorCtrl.value"></rect>
+    </g>
+  </svg>
+  <br>
+  <ul>
+    <li>ESTILOS desde la propiedad Style</li>
+  </ul>
+    <input type="number" [formControl]="widthCtrl">
+    <span class="box" [style.width.px]="widthCtrl.value"> value: {{ widthCtrl.value }}</span>
+
+  <br>
+  <ul>
+    <li>ESTILOS desde la propiedad Style</li>
+  </ul>
+  <p>
+    <input type="text" [formControl]="nameCtrl">
+    <span
+      class="message-error"
+      [class.show-error]="nameCtrl.invalid && nameCtrl.touched"
+    > Dato invalido</span>
+  </p>
+  <p>
+    <input type="text">
+  </p>
+</div>
